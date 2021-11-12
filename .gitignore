@@ -1,0 +1,12 @@
+# folders
+build/
+build*/
+
+# file extentions
+*.user
+*.save
+
+# Hidden files and folders
+.*/
+.*
+!.gitignore
