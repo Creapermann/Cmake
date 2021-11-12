@@ -12,11 +12,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 function(print_reversed)
 
     if(${EVERYTHING_FINE})
-        
+
         # Reverse and print
         list(REVERSE ARGN)
         foreach(item IN ITEMS ${ARGN})
-         
+
             message(${item})
             
         endforeach()
