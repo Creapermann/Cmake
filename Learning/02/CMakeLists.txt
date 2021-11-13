@@ -1,3 +1,4 @@
+
 cmake_minimum_required(VERSION 3.8)
 
 project(testing VERSION 1.0
@@ -13,7 +14,7 @@ function(myfunc)
     set(prefix      TEST)
     set(valueless   READY WHAT_NOW)
     set(singlevalue TARGET)
-    set(multivalue  SOURCES)
+    set(multivalue  SOURCES FILES)
     
     
     # Process passed in arguments
@@ -22,6 +23,17 @@ function(myfunc)
         "${valueless}" "${singlevalue}" "${multivalue}"
         ${ARGV}
     )
+
+    # EXPLENTATION:
+    # The defined keywords are elements of the list they were defined in,
+    # e.g. "TEST" is an element of the list "prefix" and the list "multivalue"
+    # contains the elements "SOURCES" and "FILES".
+    # The function cmake_parse_arguments automatically creates lists of these keywords
+    # called like this: ${prefix}_${keyword}, so there is a list for every keyword which
+    # contains the arguments the caller passed to these keywords.
+    # So the list "multivalue" contains 2 other lists called "TEST_SOURCES" and "TEST_FILES"
+    # (TEST_ because the prefix is "TEST"). "TEST_SOURCES" then contains the strings:
+    # "main.cpp" "test.hpp" "test.cpp" the list "TEST_FILES" is empty
     
     
     message("Option overview:")
@@ -106,4 +118,4 @@ endfunction()
 
 
 
-myfunc(READY test TARGET mytarget SOURCES main.cpp test.hpp test.cpp house.cpp house.hpp)
+myfunc(READY test TARGET mytarget SOURCES main.cpp test.hpp test.cpp)
