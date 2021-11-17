@@ -15,8 +15,8 @@ function(myfunc)
     set(valueless   READY WHAT_NOW)
     set(singlevalue TARGET)
     set(multivalue  SOURCES FILES)
-    
-    
+
+
     # Process passed in arguments
     include(CMakeParseArguments)
     cmake_parse_arguments(${prefix}
