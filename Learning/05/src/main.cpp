@@ -1,11 +1,12 @@
 #include <iostream>
 
-#include "box.hpp"
 
-int main()
+int main(int argc, char* argv[])
 {
-    ftxui::Box box;
+    std::cout << "Worked, " << argc << " arguments passed in: \n";
     
-    std::cout << "Hello world\n";
-    return 0;
+    for(int i = 0; i < argc; ++i)
+    {
+        std::cout << argv[i] << "\n";
+    }
 }

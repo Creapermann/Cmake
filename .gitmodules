@@ -1,3 +1,6 @@
 [submodule "Learning/05/libs/ftxui/FTXUI"]
 	path = Learning/05/libs/ftxui/FTXUI
 	url = https://github.com/ArthurSonzogni/FTXUI.git
+[submodule "Learning/05/libs/timer/timer"]
+	path = Learning/05/libs/timer/timer
+	url = https://github.com/tammoippen/timer.git
