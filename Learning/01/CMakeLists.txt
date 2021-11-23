@@ -1,4 +1,4 @@
-# Learning about functions and variable types
+# Learning about functions and variable types #
 
 cmake_minimum_required(VERSION 3.8)
 

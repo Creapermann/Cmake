@@ -1,4 +1,4 @@
-# Copies a file to another location
+# Copies a file to another location #
 
 cmake_minimum_required(VERSION 3.8)
 
