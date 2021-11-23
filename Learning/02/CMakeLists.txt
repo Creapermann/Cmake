@@ -1,3 +1,4 @@
+# Learning how to use cmake_parse_arguments for a good a good function argument structure
 
 cmake_minimum_required(VERSION 3.8)
 

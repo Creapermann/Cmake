@@ -1,47 +1,55 @@
+# Practising using cmake_parse_arguments
+
 cmake_minimum_required(VERSION 3.8)
 
-project(Testing VERSION 1.0
-                LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(mytest)
 
 
-# Build type detection
-if(NOT GENERATOR_IS_MULTI_CONFIG)
+function(myfunc placeholder1 placeholder2)
     
-    # If CMAKE_BUILD_TYPE cache variable was set on command line
-    if(CMAKE_BUILD_TYPE)
-        
-        # Get build type and convert to upper
-        set(BUILD_TYPE)
-        string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
-        
-        
-        if("${BUILD_TYPE}" STREQUAL "DEBUG")
-            message(STATUS "You are building in debug mode")
-            # Do work...
-        elseif("${BUILD_TYPE}" STREQUAL "RELEASE")
-            message(STATUS "You are building in release mode")
-            # Do work...
-        else()
-            message(STATUS "You are building in another mode than debug or release")
-            # Do work...
-        endif()
+    set(prefix "MYFUNC")
+    set(noval "ENABLE" "PRINT_EXTRA")
+    set(singleval "TARGET")
+    set(multival "OPTIONS" "CONFIGS")
     
-    # If CMAKE_BUILD_TYPE cache variable was not set on command line
+    cmake_parse_arguments(${prefix}
+        "${noval}" "${singleval}" "${multival}"
+        ${ARGV}
+    )
+
+    if(${prefix}_ENABLE)
+        
+        message(NOTICE "Setting options: ")
+        
+        foreach(list ${multival})
+            foreach(var ${${prefix}_${list}})
+                message(NOTICE "- ${var}")
+            endforeach()
+        endforeach()
+        
+        message(NOTICE "For the TARGET: ")
+        
+        foreach(list ${singleval})
+            foreach(var ${${prefix}_${list}})
+                message(NOTICE ${var})
+            endforeach()
+        endforeach()
+        
     else()
-        set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "" FORCE)
-        
-        # Check if CMAKE_BUILD_TYPE cache variable was set correctly
-        if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-            message(STATUS "You are now automatically building in debug mode")
-        else()
-            message(FATAL_ERROR "CMAKE_BUILD_TYPE could not be set!")
-        endif()
-        
+        message(NOTICE "Not enabled!")
+    
     endif()
     
-else()
-    message(NOTICE "Your generator is multi-config")
-endif()
+    message("")
+    
+    if(${prefix}_PRINT_EXTRA)
+        message(VERBOSE "Extra info")
+    endif()
+    
+    message("")
+        
+endfunction()
+
+myfunc(ENABLE PRINT_EXTRA TARGET myapp OPTIONS "ENABLE_ALL_OPTIMISATIONS" "NO_DEBUG_FILES")
+
+#add_executable(app src/main.cpp)

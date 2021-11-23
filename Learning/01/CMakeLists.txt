@@ -1,3 +1,5 @@
+# Learning about functions and variable types
+
 cmake_minimum_required(VERSION 3.8)
 
 project(mytest VERSION 1.0
@@ -23,7 +25,7 @@ function(print_reversed)
     
     else()
         
-        message("Coudln't enter the loop")
+        message("Doing nothing")
         
     endif()
         

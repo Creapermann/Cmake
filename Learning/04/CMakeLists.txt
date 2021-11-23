@@ -1,3 +1,5 @@
+# Practising good function strucuturing with cmake_parse_arguments
+
 cmake_minimum_required(VERSION 3.8)
 
 project(mytest)
@@ -49,5 +51,3 @@ function(myfunc placeholder1 placeholder2)
 endfunction()
 
 myfunc(ENABLE PRINT_EXTRA TARGET myapp OPTIONS "ENABLE_ALL_OPTIMISATIONS" "NO_DEBUG_FILES")
-
-#add_executable(app src/main.cpp)
