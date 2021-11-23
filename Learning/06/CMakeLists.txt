@@ -22,19 +22,23 @@ file(TOUCH "${SRC_PATH}")
 # Get content
 file(STRINGS "${SRC_PATH}" content)
 
-# Check if 
+# Check if the source file is empty
 list(LENGTH content list_length)
 
-if(${list_length} EQUAL 0)
+if(${list_length} EQUAL 0)           # no content at all
     message(WARNING "Your source file is empty")
-else()
-    set(is_not_empty "OFF")
+else()                               # just whitespaces
+    set(is_empty "TRUE")
     
     foreach(var IN LISTS content)
         if(NOT ${var} STREQUAL "")
-            set(is_not_empty "ON")
+            set(is_empty "FALSE")
         endif()
     endforeach()
+    
+    if(${is_empty})
+        message(WARNING "Your source file is empty")
+    endif()
 endif()
 
 
