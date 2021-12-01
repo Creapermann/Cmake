@@ -8,26 +8,24 @@ enable_testing()
 # Language
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_EXTENSIONS FALSE)
 
 
-# Options
-option(MYAPP_TESTS ON)
+option(MYAPP_BUILD_TESTS ON)
 
 
-# Add libraries
+
+# subdirectories
 add_subdirectory(src/mylib)
 
-
-# Add Tests
-if(MYAPP_TESTS)
+if(MYAPP_BUILD_TESTS)
     add_subdirectory(libs/googletest)
-    add_subdirectory(tests/mylib_tests)
+    add_subdirectory(tests)
 endif()
 
 
 
-# Create app
+# Build app
 add_executable(app 
                 src/app/main.cpp
     )
